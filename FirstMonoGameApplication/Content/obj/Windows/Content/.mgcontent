@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Profile>Reach</Profile>
+  <Platform>Windows</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/STANLEY/Desktop/UNIVERSE/repos/MonoSnakesAndLaddersGame/FirstMonoGameApplication/Content/Background/026e9d080dcfa13c158f043e874002e7.jpg</File>
+    <File>C:/Users/STANLEY/Desktop/UNIVERSE/repos/MonoSnakesAndLaddersGame/FirstMonoGameApplication/Content/Background/background.jpg</File>
+    <File>C:/Users/STANLEY/Desktop/UNIVERSE/repos/MonoSnakesAndLaddersGame/FirstMonoGameApplication/Content/Background/startlogo.png</File>
+    <File>C:/Users/STANLEY/Desktop/UNIVERSE/repos/MonoSnakesAndLaddersGame/FirstMonoGameApplication/Content/buttonroll.png</File>
+    <File>C:/Users/STANLEY/Desktop/UNIVERSE/repos/MonoSnakesAndLaddersGame/FirstMonoGameApplication/Content/dicefive.png</File>
+    <File>C:/Users/STANLEY/Desktop/UNIVERSE/repos/MonoSnakesAndLaddersGame/FirstMonoGameApplication/Content/dicefour.png</File>
+    <File>C:/Users/STANLEY/Desktop/UNIVERSE/repos/MonoSnakesAndLaddersGame/FirstMonoGameApplication/Content/diceone.png</File>
+    <File>C:/Users/STANLEY/Desktop/UNIVERSE/repos/MonoSnakesAndLaddersGame/FirstMonoGameApplication/Content/dicesix.png</File>
+    <File>C:/Users/STANLEY/Desktop/UNIVERSE/repos/MonoSnakesAndLaddersGame/FirstMonoGameApplication/Content/dicethree.png</File>
+    <File>C:/Users/STANLEY/Desktop/UNIVERSE/repos/MonoSnakesAndLaddersGame/FirstMonoGameApplication/Content/dicetwo.png</File>
+    <File>C:/Users/STANLEY/Desktop/UNIVERSE/repos/MonoSnakesAndLaddersGame/FirstMonoGameApplication/Content/ScoresFont.spritefont</File>
+    <File>C:/Users/STANLEY/Desktop/UNIVERSE/repos/MonoSnakesAndLaddersGame/FirstMonoGameApplication/Content/StartGameFont.spritefont</File>
+  </SourceFiles>
+</SourceFileCollection>
