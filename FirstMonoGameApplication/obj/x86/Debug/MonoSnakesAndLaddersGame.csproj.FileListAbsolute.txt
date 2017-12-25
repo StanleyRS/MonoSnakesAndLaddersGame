@@ -50,3 +50,5 @@ C:\Users\STANLEY\Desktop\UNIVERSE\repos\MonoSnakesAndLaddersGame\FirstMonoGameAp
 C:\Users\STANLEY\Desktop\UNIVERSE\repos\MonoSnakesAndLaddersGame\FirstMonoGameApplication\bin\Windows\x86\Debug\Content\dicesix.xnb
 C:\Users\STANLEY\Desktop\UNIVERSE\repos\MonoSnakesAndLaddersGame\FirstMonoGameApplication\bin\Windows\x86\Debug\Content\dicethree.xnb
 C:\Users\STANLEY\Desktop\UNIVERSE\repos\MonoSnakesAndLaddersGame\FirstMonoGameApplication\bin\Windows\x86\Debug\Content\dicetwo.xnb
+C:\Users\STANLEY\Desktop\UNIVERSE\repos\MonoSnakesAndLaddersGame\FirstMonoGameApplication\bin\Windows\x86\Debug\Content\playerOne.xnb
+C:\Users\STANLEY\Desktop\UNIVERSE\repos\MonoSnakesAndLaddersGame\FirstMonoGameApplication\bin\Windows\x86\Debug\Content\playerTwo.xnb
