@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/STANLEY/Desktop/UNIVERSE/repos/MonoSnakesAndLaddersGame/FirstMonoGameApplication/Content/playerOne.png</SourceFile>
-  <SourceTime>2017-12-04T16:18:39.9138968+02:00</SourceTime>
+  <SourceTime>2017-12-23T21:11:21.9934883+02:00</SourceTime>
   <DestFile>C:/Users/STANLEY/Desktop/UNIVERSE/repos/MonoSnakesAndLaddersGame/FirstMonoGameApplication/Content/bin/Windows/playerOne.xnb</DestFile>
-  <DestTime>2017-12-23T16:22:12.0453617+02:00</DestTime>
+  <DestTime>2017-12-26T12:39:21.1350315+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-11-28T22:21:08+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

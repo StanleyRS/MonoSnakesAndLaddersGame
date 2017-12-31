@@ -15,24 +15,18 @@ namespace FirstMonoGameApplication.Objects
     public class Player
     {
         private Texture2D Sprite;
-        private Rectangle Rectangle;
-        private Vector2 startPosition;
+        public Rectangle Rectangle;
+        private Vector2 Position;
         private int Pick;
     
-        int playerSteps = 30;
+        int playerSteps = 64;
 
         public Player(Texture2D sprite, Rectangle rect, Vector2 position, int pick)
         {
             Sprite = sprite;
             Rectangle = rect;
-            startPosition = position;
+            Position = position;
             Pick = pick;
-
-        }
-
-        public void Update()
-        {
-            PlayerMove(Pick, startPosition);
         }
 
         public void Draw(SpriteBatch sb)
@@ -40,14 +34,26 @@ namespace FirstMonoGameApplication.Objects
             sb.Draw(Sprite, Rectangle, Color.White);
         }
 
-        public Vector2 PlayerMove(int pick, Vector2 updatedPosition)
+        public Vector2 PlayerMove(int pick)
         {
-            //Rectangle = new Rectangle((int)startPosition.X, (int)startPosition.Y, Sprite.Width, Sprite.Height);
-            Rectangle = new Rectangle((int)updatedPosition.X, (int)updatedPosition.Y, Sprite.Width, Sprite.Height);
 
-            Rectangle.X += playerSteps * pick;
+            if (Rectangle.X <= 560)
+            {
+                Rectangle.X += (playerSteps * pick);
+            }
+            else
+            {
+                Rectangle.Y -= 50;
+            }
 
-            return updatedPosition;
+            Position.X = Rectangle.X;
+            Position.Y = Rectangle.Y;
+            
+            // check collision with tiles
+
+
+
+            return Position;
 
         }
     }
