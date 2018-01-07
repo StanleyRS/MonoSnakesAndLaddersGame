@@ -42,6 +42,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="BoardMap\BoardTileMap.cs" />
+    <Compile Include="BoardMap\Levels.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Objects\Player.cs" />
     <Compile Include="Program.cs" />

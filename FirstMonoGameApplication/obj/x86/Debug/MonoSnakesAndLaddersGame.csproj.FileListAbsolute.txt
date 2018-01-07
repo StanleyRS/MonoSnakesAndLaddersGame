@@ -77,3 +77,5 @@ C:\Users\STANLEY\Desktop\UNIVERSE\repos\MonoSnakesAndLaddersGame\FirstMonoGameAp
 C:\Users\STANLEY\Desktop\UNIVERSE\repos\MonoSnakesAndLaddersGame\FirstMonoGameApplication\bin\Windows\x86\Debug\MonoGame.Extended.Tiled.pdb
 C:\Users\STANLEY\Desktop\UNIVERSE\repos\MonoSnakesAndLaddersGame\FirstMonoGameApplication\bin\Windows\x86\Debug\MonoGame.Extended.Tweening.pdb
 C:\Users\STANLEY\Desktop\UNIVERSE\repos\MonoSnakesAndLaddersGame\FirstMonoGameApplication\bin\Windows\x86\Debug\Newtonsoft.Json.xml
+C:\Users\STANLEY\Desktop\UNIVERSE\repos\MonoSnakesAndLaddersGame\FirstMonoGameApplication\bin\Windows\x86\Debug\Content\beep-21.wma
+C:\Users\STANLEY\Desktop\UNIVERSE\repos\MonoSnakesAndLaddersGame\FirstMonoGameApplication\bin\Windows\x86\Debug\Content\beep-21.xnb

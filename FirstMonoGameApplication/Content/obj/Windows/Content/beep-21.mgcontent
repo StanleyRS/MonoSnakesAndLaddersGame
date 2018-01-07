@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>C:/Users/STANLEY/Desktop/UNIVERSE/repos/MonoSnakesAndLaddersGame/FirstMonoGameApplication/Content/beep-21.mp3</SourceFile>
+  <SourceTime>2017-12-31T23:03:05.3839367+02:00</SourceTime>
+  <DestFile>C:/Users/STANLEY/Desktop/UNIVERSE/repos/MonoSnakesAndLaddersGame/FirstMonoGameApplication/Content/bin/Windows/Content/beep-21.xnb</DestFile>
+  <DestTime>2017-12-31T23:24:31.4573846+02:00</DestTime>
+  <Importer>Mp3Importer</Importer>
+  <ImporterTime>2017-11-28T22:21:08+02:00</ImporterTime>
+  <Processor>SongProcessor</Processor>
+  <ProcessorTime>2017-11-28T22:21:08+02:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput>
+    <string>C:/Users/STANLEY/Desktop/UNIVERSE/repos/MonoSnakesAndLaddersGame/FirstMonoGameApplication/Content/bin/Windows/Content/beep-21.wma</string>
+  </BuildOutput>
+</PipelineBuildEvent>

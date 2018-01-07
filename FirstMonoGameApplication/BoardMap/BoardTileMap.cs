@@ -1,10 +1,15 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Design;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FirstMonoGameApplication.Objects;
 
 namespace FirstMonoGameApplication.BoardMap
 {
@@ -12,20 +17,15 @@ namespace FirstMonoGameApplication.BoardMap
     {
         Texture2D pixel;
         GraphicsDevice graphicsDevice;
-
         //array for each rectangle
         //Rectangle[] Tiles = new Rectangle[9];
         List<Rectangle> Rectangles = new List<Rectangle>();
 
-        int BorderWidth = 3;
+        int BorderWidth = 2;
 
         public BoardTileMap(GraphicsDevice device)
         {
             graphicsDevice = device;
-        }
-
-        public void LoadContent()
-        {
             pixel = new Texture2D(graphicsDevice, width: 1, height: 1);
             pixel.SetData(new[] { Color.White });
         }
@@ -41,33 +41,31 @@ namespace FirstMonoGameApplication.BoardMap
                 Rectangle rectangle = new Rectangle((int)(60 + (x * 64)), 0, BorderWidth, 765);
                 sb.Draw(pixel, rectangle, Color.Black);
                 Rectangles.Add(rectangle);
+                // pass tile rectangle to player class
+                // check in player class if player rectangle intersects with tile rectangle
             }
             for (float y = 0; y < 9; y++)
             {
                 Rectangle rectangle = new Rectangle(0, (int)(80 + (y * 76)), 640, BorderWidth);
                 sb.Draw(pixel, rectangle, Color.Black);
                 Rectangles.Add(rectangle);
-            }
+            }     
+        }  
 
-
-            //check if object makes a intersection with tiles[i]*/
-        }
-
-
-        public Rectangle CheckCollision(Rectangle playerPos)
+        public Vector2 CheckTilePlayerCollision(Player player)
         {
 
-            for (int i = 0; i < Rectangles.Count; i++)
+            foreach (var r in Rectangles)
             {
-                if (Rectangles[i].Intersects(playerPos))
+                if (player.Rectangle.Intersects(r))
                 {
-                    return playerPos;
+                    return new Vector2(r.X, r.Y);
                 }
             }
+            //return new Vector2(700, 700);
+            return Vector2.Zero;
 
-            return playerPos;
+
         }
-
-
     }
 }

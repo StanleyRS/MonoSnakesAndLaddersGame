@@ -46,6 +46,7 @@ namespace FirstMonoGameApplication
         Point mousePosition;
         // player position variable of type vector2
         Vector2 playerPosition;
+        Vector2 position;
         //  Create a list to store the players
         List<Player> players = new List<Player>();
         //Randomness
@@ -58,13 +59,13 @@ namespace FirstMonoGameApplication
         //Store the dice pick after button press
         int dicePick = 0;
         int playerTurn = 0;
-        int delay = 500;
-
+        bool buttonDelay = false;
+        int delay = 100;
 
         //TEST
         BoardTileMap Tiles;
-        List<BoardTileMap> TilesList = new List<BoardTileMap>();
-    
+        Levels Level;
+
 
         public Game1()
         {
@@ -115,12 +116,14 @@ namespace FirstMonoGameApplication
             playerPosition = new Vector2(15, 710);
             playerStartRectangle = new Rectangle((int)playerPosition.X, (int)playerPosition.Y, playerTexture.Width, playerTexture.Height);
 
-            playerOne = new Player(playerTexture, new Rectangle(0, 0, 0, 0), playerPosition, 0);
-            playerTwo = new Player(computerTexture, new Rectangle(0, 0, 0, 0), playerPosition, 0);
+            playerOne = new Player(playerTexture, new Rectangle(0, 0, 0, 0), playerPosition, 0, GraphicsDevice, Content);
+            playerTwo = new Player(computerTexture, new Rectangle(0, 0, 0, 0), playerPosition, 0, GraphicsDevice, Content);
 
             //tiles
             Tiles = new BoardTileMap(GraphicsDevice);
-            Tiles.LoadContent();
+            Level = new Levels(GraphicsDevice);
+
+            Level.LoadContent(Content);
 
             //test font
             testFont = Content.Load<SpriteFont>("testFont");
@@ -149,7 +152,7 @@ namespace FirstMonoGameApplication
             {
                 // if key is pressed start game
                 GameStart();
-            }          
+            }
             base.Update(gameTime);
         }
 
@@ -164,27 +167,37 @@ namespace FirstMonoGameApplication
 
             // game starts bool
             if (gameStarted)
-            {
-                // if game is on draw board and dice roll button
+            {   // if game is on draw board and dice roll button
                 spriteBatch.Draw(backgroundPicture, backgroundRectangle, Color.White);
                 spriteBatch.Draw(DiceRollButton, buttonRectangle, Color.White);
 
                 //test fonts
-                spriteBatch.DrawString(testFont, "playerTurn" + playerTurn, new Vector2(650, 100), Color.Blue);
-                spriteBatch.DrawString(testFont, "1P" + playerOne.Rectangle, new Vector2(650, 130), Color.Blue);
-                spriteBatch.DrawString(testFont, "2P" + playerTwo.Rectangle, new Vector2(650, 160), Color.Blue);
-                spriteBatch.DrawString(testFont, "PosCurrPlayer" + playerPosition, new Vector2(650, 190), Color.Blue);
+                spriteBatch.DrawString(testFont, "playerTurn " + playerTurn, new Vector2(650, 100), Color.Blue);
+                spriteBatch.DrawString(testFont, "P1 " + playerOne.Rectangle, new Vector2(650, 130), Color.Blue);
+                spriteBatch.DrawString(testFont, "P2 " + playerTwo.Rectangle, new Vector2(650, 160), Color.Blue);
+                spriteBatch.DrawString(testFont, "PosCurrPlayer " + playerPosition, new Vector2(650, 190), Color.Blue);
+                spriteBatch.DrawString(testFont, "mouseCoords: " + mousePosition, new Vector2(690, 450), Color.Blue);
+                spriteBatch.DrawString(testFont, "delay: " + delay, new Vector2(690, 480), Color.Blue);
+                spriteBatch.DrawString(testFont, "buttondelay " + buttonDelay, new Vector2(690, 510), Color.Blue);
+                //spriteBatch.DrawString(testFont, "buttonpress " + buttonPressed, new Vector2(690, 530), Color.Blue);
+                spriteBatch.DrawString(testFont, "intersection: " + position, position, Color.Blue);
+                
 
+                Level.Draw(spriteBatch);
                 Tiles.Draw(spriteBatch);
 
                 // if button isnt pressed yet
                 if (!buttonPressed)
                 {
                     // draw dice roll text
-                    spriteBatch.DrawString(GameStartFont, "Press Roll Dice to Start.", new Vector2(690, 630), Color.Blue);
+                    spriteBatch.DrawString(GameStartFont, "Press button to Start Game.", new Vector2(670, 630), Color.Blue);
                 }
                 else
                 {
+                    if (!buttonDelay)
+                    {
+                        spriteBatch.DrawString(GameStartFont, "Press buton to Roll the dice.", new Vector2(670, 550), Color.Blue);
+                    }
                     // iff button pressed draw picked dice
                     spriteBatch.Draw(diceSprite, diceRectangle, Color.White);
                     // check if player is on board
@@ -212,6 +225,18 @@ namespace FirstMonoGameApplication
             base.Draw(gameTime);
         }
 
+
+        #region Methods
+
+        // player input handle
+        public void InputHandle()
+        {
+            if (Keyboard.GetState().GetPressedKeys().Length > 0)
+            {
+                gameStarted = true;
+            }
+        }
+
         public void GameStart()
         {
             // get the current mouse state
@@ -221,32 +246,28 @@ namespace FirstMonoGameApplication
             // check if player makes a click on the button
             if (currentMouseState.LeftButton == ButtonState.Pressed && previousMouseState.LeftButton == ButtonState.Released && buttonRectangle.Contains(mousePosition))
             {
-                    buttonPressed = true;
-
+                buttonPressed = true;
                 if (playerTurn == 0) { playerTurn = 1; }
 
-                // roll teh diceee
-                DiceRoll();
+                if (!buttonDelay && playerTurn == 1)
+                {
+                    // roll teh diceee
+                    DiceRoll();
+                }
             }
             else if (playerTurn == 2)
             {
                 delay--;
-                if (delay < 10)
+                if (delay <= 0)
                 {
                     DiceRoll();
+
+                    buttonDelay = false;
+                    delay = 100;
                 }
             }
             // previous mouse state is equal to the current mouse state, so we can make a comparasion later
             previousMouseState = currentMouseState;
-        }
-
-        // player input handle
-        public void InputHandle()
-        {
-            if (Keyboard.GetState().GetPressedKeys().Length > 0)
-            {
-                gameStarted = true;
-            }
         }
 
         public void DiceRoll()
@@ -285,15 +306,19 @@ namespace FirstMonoGameApplication
                                 playerTexture,
                                 playerStartRectangle,
                                 playerPosition,
-                                dicePick);
+                                dicePick, GraphicsDevice, Content);
                     // add the current player to the list
                     players.Add(playerOne);
                     //repeat turn
+                    buttonDelay = false;
                     playerTurn = 1;
+                    Level.LevelHandle(playerOne);
+                    position = Tiles.CheckTilePlayerCollision(playerOne);
                 }
                 else if (!playerOnBoard && dicePick != 6)
                 {
                     playerTurn = 2;
+                    buttonDelay = true;
                 }
                 // on next roll player is already on board so its time to move it
                 else
@@ -301,19 +326,21 @@ namespace FirstMonoGameApplication
                     // if dice is 6 again, give extra turn
                     if (dicePick == 6)
                     { // move player
-                        playerPosition = playerOne.PlayerMove(dicePick);
+                        playerPosition = playerOne.PlayerMove(dicePick, playerOne);
                         playerTurn = 1;
-
-                        Tiles.CheckCollision(playerOne.Rectangle);
+                        Level.LevelHandle(playerOne);
+                        buttonDelay = false;
+                        position = Tiles.CheckTilePlayerCollision(playerOne);
                     }
                     else
                     { // different roll than 6, pass turn to computer
-                        playerPosition = playerOne.PlayerMove(dicePick);
+                        playerPosition = playerOne.PlayerMove(dicePick, playerOne);
                         playerTurn = 2;
-
-                        Tiles.CheckCollision(playerOne.Rectangle);
+                        buttonDelay = true;
+                        Level.LevelHandle(playerOne);
+                        position = Tiles.CheckTilePlayerCollision(playerOne);
                     }
-                }
+                }               
             }
             else if (playerTurn == 2)
             {
@@ -326,37 +353,45 @@ namespace FirstMonoGameApplication
                         computerTexture,
                         playerStartRectangle,
                         playerPosition,
-                        dicePick);
+                        dicePick, GraphicsDevice, Content);
                     // add player to the player list
                     players.Add(playerTwo);
                     playerTurn = 2;
+                    buttonDelay = true;
+                    Level.LevelHandle(playerTwo);
+                    position = Tiles.CheckTilePlayerCollision(playerTwo);
                 }
                 else if (!computerOnBoard && dicePick != 6 && playerTurn.Equals(2))
                 {
                     playerTurn = 1;
+                    buttonDelay = false;
                 }
                 // computer is already on board so lets move it
                 else
                 {
-                    // UPDATE: need to implement rectangle update on player move position
-                    // update by Vector2 position, after every pass to playermove
                     if (dicePick == 6)
                     {
-                        playerPosition = playerTwo.PlayerMove(dicePick);
+                        playerPosition = playerTwo.PlayerMove(dicePick, playerTwo);
                         playerTurn = 2;
-
-                        Tiles.CheckCollision(playerTwo.Rectangle);
+                        buttonDelay = true;
+                        // pass to tiles
+                        Level.LevelHandle(playerTwo);
+                        position = Tiles.CheckTilePlayerCollision(playerTwo);
                     }
                     else
                     {
-                        playerPosition = playerTwo.PlayerMove(dicePick);
+                        playerPosition = playerTwo.PlayerMove(dicePick, playerTwo);
                         playerTurn = 1;
-
-                        Tiles.CheckCollision(playerTwo.Rectangle);
+                        buttonDelay = false;
+                        // pass to tiles
+                        Level.LevelHandle(playerTwo);
+                        position = Tiles.CheckTilePlayerCollision(playerTwo);
                     }
                 }
             }
         }
+
+        #endregion
 
         /*TODO: ADD YOUR TODO TASKS HERE AND ANY EXTRA INFO NEEDED FOR GAME E.G BLOCK SIZE, BOARD SIZE, SNAKES OR LADDERS POSITIONS
          
